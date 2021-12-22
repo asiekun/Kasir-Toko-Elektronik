@@ -45,13 +45,11 @@ public class Auth {
 
     public String cekLogin(String username, String password) { 
         query = "SELECT nama FROM pegawai WHERE username = ? AND password = md5(?)";
-        System.out.println("Bisa 1!");
         try { 
             psmt = koneksi.prepareStatement(query);
             psmt.setString(1, username);
             psmt.setString(2, password);
             dataUser = psmt.executeQuery();
-            System.out.println("Bisa 2!");
             if (!dataUser.next()){
                 pesan = "Gagal Login";
             } else {

@@ -4,18 +4,46 @@
  */
 package kasir;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Adan Nugraha
  */
 public class FormDetailTransaksi extends javax.swing.JFrame {
-
+    private DefaultTableModel tabmode;
+    private ResultSet hasilDetail;
     /**
      * Creates new form FormDetailTransaksi
      */
-    public FormDetailTransaksi() {
+    public FormDetailTransaksi(String idTransaksi) {
+        Riwayat riwayat = new Riwayat();
         initComponents();
+        lblIdTransaksi.setText(idTransaksi);
+        Object [] detailTransaksi = {"Nomor", "Nama Barang", "Jumlah Barang", "Total Harga"};
+        tabmode = new DefaultTableModel(null, detailTransaksi);
+        tabelDetail.setModel(tabmode);
+        try {
+            hasilDetail = riwayat.tampilDetail( (String) idTransaksi);
+            int i = 1;
+            while (hasilDetail.next()) {
+                riwayat.setNamaBarang(hasilDetail.getString("nama_barang"));
+                riwayat.setJumlahBarang(hasilDetail.getString("jumlah_barang"));
+                riwayat.setTotalHarga(hasilDetail.getString("total_harga"));
+                String[] dataDetail = {Integer.toString(i), riwayat.getNamaBarang(), riwayat.getJumlahBarang(),
+                                            riwayat.getTotalHarga()};
+                i++;
+                tabmode.addRow(dataDetail);
+            }
+        } catch (NumberFormatException | SQLException e) {
+            
+        }
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,9 +56,9 @@ public class FormDetailTransaksi extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabelBarang = new javax.swing.JTable();
+        tabelDetail = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblIdTransaksi = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,27 +69,27 @@ public class FormDetailTransaksi extends javax.swing.JFrame {
             }
         });
 
-        tabelBarang.setModel(new javax.swing.table.DefaultTableModel(
+        tabelDetail.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nomor", "Nama Barang", "Harga Per Item", "Jumlah Barang", "Total Harga"
+                "Nomor", "Nama Barang", "Jumlah Barang", "Total Harga"
             }
         ));
-        tabelBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelDetail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelBarangMouseClicked(evt);
+                tabelDetailMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tabelBarang);
+        jScrollPane2.setViewportView(tabelDetail);
 
         jLabel1.setText("ID Transaksi :");
 
-        jLabel2.setText("ID");
+        lblIdTransaksi.setText("ID");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,7 +107,7 @@ public class FormDetailTransaksi extends javax.swing.JFrame {
                         .addGap(301, 301, 301)
                         .addComponent(jLabel1)
                         .addGap(93, 93, 93)
-                        .addComponent(jLabel2)))
+                        .addComponent(lblIdTransaksi)))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -88,7 +116,7 @@ public class FormDetailTransaksi extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(lblIdTransaksi))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
@@ -105,16 +133,16 @@ public class FormDetailTransaksi extends javax.swing.JFrame {
         formRiwayat.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void tabelBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelBarangMouseClicked
+    private void tabelDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelDetailMouseClicked
         
-    }//GEN-LAST:event_tabelBarangMouseClicked
+    }//GEN-LAST:event_tabelDetailMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tabelBarang;
+    private javax.swing.JLabel lblIdTransaksi;
+    private javax.swing.JTable tabelDetail;
     // End of variables declaration//GEN-END:variables
 }

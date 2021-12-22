@@ -19,7 +19,7 @@ public class Riwayat {
     private PreparedStatement psmt; 
     private Statement stat; 
     private ResultSet hasilTransaksi ,hasilDetail;
-    private String query, idtransaksi, waktu, totalBayar, uangBayar, kembalian, pegawai,
+    private String query, idTransaksi, waktu, totalBayar, uangBayar, kembalian, pegawai,
             jumlahBarang, totalHarga, namaBarang;
     
     public Riwayat() {
@@ -30,12 +30,12 @@ public class Riwayat {
         }
     }
 
-    public String getIdtransaksi() {
-        return idtransaksi;
+    public String getIdTransaksi() {
+        return idTransaksi;
     }
 
-    public void setIdtransaksi(String idtransaksi) {
-        this.idtransaksi = idtransaksi;
+    public void setIdTransaksi(String idtransaksi) {
+        this.idTransaksi = idtransaksi;
     }
 
     public String getWaktu() {
@@ -112,11 +112,12 @@ public class Riwayat {
         return hasilTransaksi; 
     } 
     
-    public ResultSet tampilDetail() {
-        query = "SELECT * FROM transaksi_barang";
+    public ResultSet tampilDetail(String idTransaksi) {
+        query = "SELECT * FROM transaksi_barang WHERE id_transaksi = ?";
         try {
-          stat = koneksi.createStatement();
-          hasilDetail = stat.executeQuery(query);
+            psmt = koneksi.prepareStatement(query);
+            psmt.setString(1, idTransaksi);
+            hasilDetail = psmt.executeQuery();
         } catch (SQLException e) {
         }
         return hasilDetail;

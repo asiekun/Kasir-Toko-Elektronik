@@ -21,6 +21,7 @@ public class FormRiwayat extends javax.swing.JFrame {
     private PreparedStatement psmt;
     private ResultSet rs;
     private String query, idTransaksi;
+    public String idTerpilih;
     /**
      * Creates new form FormRiwayat
      */
@@ -35,21 +36,30 @@ public class FormRiwayat extends javax.swing.JFrame {
         tampilTransaksi();
         loadIdTransaksi();
     }
+
+    public String getIdTerpilih() {
+        return idTerpilih;
+    }
+
+    public void setIdTerpilih(String idTerpilih) {
+        this.idTerpilih = idTerpilih;
+    }
     
-    private void tampilTransaksi() {
+    
+    public void tampilTransaksi() {
         Object [] transaksi = {"ID Transaksi", "Waktu", "Total Bayar", "Uang Bayar", "Kembalian", "Pegawai"};
         tabmode = new DefaultTableModel(null, transaksi);
         tabelRiwayat.setModel(tabmode);
         try {
             hasilTransaksi = riwayat.tampilData();
             while (hasilTransaksi.next()) {
-                riwayat.setIdtransaksi(hasilTransaksi.getString("id_transaksi"));
+                riwayat.setIdTransaksi(hasilTransaksi.getString("id_transaksi"));
                 riwayat.setWaktu(hasilTransaksi.getString("waktu_transaksi"));
                 riwayat.setTotalBayar(hasilTransaksi.getString("total_pembayaran"));
-                riwayat.setUangBayar(hasilTransaksi.getString("uang_bayar"));
+                riwayat.setUangBayar(hasilTransaksi.getString("uang_dibayar"));
                 riwayat.setKembalian(hasilTransaksi.getString("kembalian"));
                 riwayat.setPegawai(hasilTransaksi.getString("username_pegawai"));
-                String[] dataTransaksi = {riwayat.getIdtransaksi(), riwayat.getWaktu(), riwayat.getTotalBayar(),
+                String[] dataTransaksi = {riwayat.getIdTransaksi(), riwayat.getWaktu(), riwayat.getTotalBayar(),
                                             riwayat.getUangBayar(), riwayat.getKembalian(), riwayat.getPegawai()};
                 tabmode.addRow(dataTransaksi);
             }
@@ -175,7 +185,8 @@ public class FormRiwayat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
-        FormDetailTransaksi formDetailTransaksi = new FormDetailTransaksi();
+        setIdTerpilih((String)cmbIdTransaksi.getSelectedItem());
+        FormDetailTransaksi formDetailTransaksi = new FormDetailTransaksi(getIdTerpilih());
         dispose();
         formDetailTransaksi.setVisible(true);
     }//GEN-LAST:event_btnDetailActionPerformed

@@ -199,9 +199,9 @@ public class FormRegister extends javax.swing.JFrame {
         }
         else {
         register.setUsername(txtUsername.getText());
-        register.setNama_lengkap(txtNamaLengkap.getText());
+        register.setNama(txtNamaLengkap.getText());
         register.setPassword(txtPassword.getText());
-        pesan = register.daftar(register.getUsername(), register.getNama_lengkap(), register.getPassword());
+        pesan = register.daftar(register.getUsername(), register.getNama(), register.getPassword());
         JOptionPane.showMessageDialog(null,"Register Sukses !");
         }
     }//GEN-LAST:event_btnRegisterActionPerformed

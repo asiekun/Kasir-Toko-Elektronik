@@ -18,7 +18,7 @@ import java.sql.Statement;
 public class Register {
     private Connection koneksi; 
     private PreparedStatement psmt; 
-    private String query, username, nama_lengkap, password, konfirmasi, pesan;
+    private String query, username, nama, password, konfirmasi, pesan;
 
     public String getUsername() {
         return username;
@@ -36,12 +36,12 @@ public class Register {
         this.password = password;
     }
 
-    public String getNama_lengkap() {
-        return nama_lengkap;
+    public String getNama() {
+        return nama;
     }
 
-    public void setNama_lengkap(String nama_lengkap) {
-        this.nama_lengkap = nama_lengkap;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public String getKonfirmasi() {
@@ -60,12 +60,12 @@ public class Register {
         }
     }
     
-    public String daftar(String username, String nama_lengkap, String password) {
-        query = "INSERT INTO pegawai(username, nama_lengkap, password) VALUES (?,?,md5(?))";
+    public String daftar(String username, String nama, String password) {
+        query = "INSERT INTO pegawai(username, nama, password) VALUES (?,?,md5(?))";
         try {
             psmt = koneksi.prepareStatement(query);
             psmt.setString(1, username);
-            psmt.setString(2, nama_lengkap);
+            psmt.setString(2, nama);
             psmt.setString(3, password);
             psmt.executeUpdate(); 
             psmt.close();
