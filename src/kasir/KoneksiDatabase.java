@@ -16,7 +16,7 @@ import java.sql.SQLException;
 
 public class KoneksiDatabase {
     private Connection connect; 
-    private String driverName = "com.mysql.cj.jdbc.Driver";  
+    private String driverName = "com.mysql.jdbc.Driver";  
     private String jdbc = "jdbc:mysql://"; 
     private String host = "localhost:"; 
     private String port = "3306"; 
