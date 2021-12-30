@@ -124,7 +124,7 @@ public class FormRegister extends javax.swing.JFrame {
                 .addComponent(jLabel6))
         );
 
-        jPanel6.setBackground(new java.awt.Color(200, 209, 228));
+        jPanel6.setBackground(new java.awt.Color(162, 181, 218));
         jPanel6.setDoubleBuffered(false);
         jPanel6.setVerifyInputWhenFocusTarget(false);
 
