@@ -15,7 +15,6 @@ import java.sql.SQLException;
 public class InputBarang {
     private Connection koneksi;
     private PreparedStatement psmt;
-    private ResultSet dataUser;
     private String query, namaBarang;
     private int hargaPerItem;
     

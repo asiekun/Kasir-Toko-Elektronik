@@ -54,7 +54,7 @@ public class Auth {
                 pesan = "Gagal Login";
             } else {
                 Session.setUsername(username);
-                Session.setNama (dataUser.getString("nama"));
+                Session.setNama(dataUser.getString("nama"));
                 Session.setStatusLogin("AKTIF"); 
                 query = "INSERT INTO log_login (username) VALUES (?)";
                 try {
@@ -62,7 +62,6 @@ public class Auth {
                     psmt.setString(1, username);
                     psmt.executeUpdate();
                     psmt.close();
-                    System.out.println("Bisa 3!");
                 } catch (SQLException e) {
                     pesan = "Gagal Simpan Log Login";
                 }

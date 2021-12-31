@@ -19,6 +19,11 @@ public class FormInputBarang extends javax.swing.JFrame {
     public FormInputBarang() {
         initComponents();
     }
+    
+    private void reset() {
+       txtNamaBarang.setText("");
+       txtHargaPerItem.setText(""); 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -206,8 +211,7 @@ public class FormInputBarang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnKembaliActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        txtNamaBarang.setText("");
-        txtHargaPerItem.setText("");
+        reset();
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
@@ -225,6 +229,7 @@ public class FormInputBarang extends javax.swing.JFrame {
                 
                 JOptionPane.showMessageDialog(null,  "Data  berhasil  tersimpan"   ,  "Informasi", 
                   JOptionPane.INFORMATION_MESSAGE);
+                reset();
             } catch (HeadlessException e) {
                 JOptionPane.showMessageDialog(null,   "Data   gagal   tersimpan"   ,   "Informasi", 
                 JOptionPane.INFORMATION_MESSAGE);

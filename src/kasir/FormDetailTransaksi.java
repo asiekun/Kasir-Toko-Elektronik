@@ -4,8 +4,6 @@
  */
 package kasir;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +17,7 @@ public class FormDetailTransaksi extends javax.swing.JFrame {
     private ResultSet hasilDetail;
     /**
      * Creates new form FormDetailTransaksi
+     * @param idTransaksi
      */
     public FormDetailTransaksi(String idTransaksi) {
         Riwayat riwayat = new Riwayat();

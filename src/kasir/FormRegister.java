@@ -19,6 +19,13 @@ public class FormRegister extends javax.swing.JFrame {
     public FormRegister() {
         initComponents();
     }
+    
+    private void reset() {
+        txtUsername.setText("");
+        txtNamaLengkap.setText("");
+        txtPassword.setText("");
+        txtConfirmation.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -156,7 +163,7 @@ public class FormRegister extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Password (Lagi)");
 
-        txtConfirmation.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtConfirmation.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         btnReset.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnReset.setText("Reset");
@@ -272,10 +279,7 @@ public class FormRegister extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNamaLengkapActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        txtUsername.setText("");
-        txtNamaLengkap.setText("");
-        txtPassword.setText("");
-        txtConfirmation.setText("");
+        reset();
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
@@ -308,6 +312,7 @@ public class FormRegister extends javax.swing.JFrame {
         register.setPassword(txtPassword.getText());
         pesan = register.daftar(register.getUsername(), register.getNama(), register.getPassword());
         JOptionPane.showMessageDialog(null,"Register Sukses !");
+        reset();
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
 

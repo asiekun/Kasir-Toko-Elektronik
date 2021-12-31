@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
  * @author Adan Nugraha
  */
 public class FormSelamatDatang extends javax.swing.JFrame {
-    Auth auth = new Auth();
     /**
      * Creates new form FormSelamatDatang
      */
@@ -139,7 +138,6 @@ public class FormSelamatDatang extends javax.swing.JFrame {
 
     private void btnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeluarActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Apakah Anda yakin akan keluar ?","Warning",2) == JOptionPane.YES_OPTION){
-        auth.Logout(Session.getUsername());
         System.exit(0); 
         }
     }//GEN-LAST:event_btnKeluarActionPerformed
